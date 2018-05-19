@@ -1,0 +1,11 @@
+USE [HeadCountData]
+GO
+/****** Object:  StoredProcedure [dbo].[HCViewAll]    Script Date: 2018/5/19 21:20:26 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROC [dbo].[HCViewAll]
+AS 
+	SELECT *
+	FROM HCMeta
