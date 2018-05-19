@@ -1,0 +1,92 @@
+@model IEnumerable<DapperHC.Models.HCModel>
+
+@{
+    ViewBag.Title = "VCILQ HeadCount Management System";
+}
+
+<h2>VCILQ HeadCount Management System全厂编制管理系统</h2>
+
+<p>
+    @Html.ActionLink("Create New", "AddOrEdit","HC")
+</p>
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Depatment部门)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Shift班次)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Area区域)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Team班组)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Position职位)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category类别)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Basis基准)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Contract合同)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date发生时间)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HC编制)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HCID岗位编号)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Depatment部门)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Shift班次)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Area区域)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Team班组)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Position职位)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category类别)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Basis基准)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Contract合同)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date发生时间)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HC编制)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HCID岗位编号)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "AddOrEdit", new {  id=item.HCID岗位编号 }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.HCID岗位编号 })
+        </td>
+    </tr>
+}
+
+</table>
