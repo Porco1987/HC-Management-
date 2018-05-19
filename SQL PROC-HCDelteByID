@@ -1,0 +1,13 @@
+USE [HeadCountData]
+GO
+/****** Object:  StoredProcedure [dbo].[HCDeleteByHCID]    Script Date: 2018/5/19 21:18:13 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROC [dbo].[HCDeleteByHCID]
+@HCID int
+AS BEGIN
+DELETE FROM HCMeta
+WHERE HCID岗位编号=@HCID
+END
