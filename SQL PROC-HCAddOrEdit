@@ -1,0 +1,68 @@
+USE [HeadCountData]
+GO
+/****** Object:  StoredProcedure [dbo].[HCAddOrEdit]    Script Date: 2018/5/19 21:17:31 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROC [dbo].[HCAddOrEdit]
+@HCID岗位编号 int,
+@Department部门 varchar(MAX),
+@Shift班次 varchar(MAX),
+@Area区域 varchar(MAX),
+@Team班组 varchar(MAX),
+@Position职位 varchar(MAX),
+@Category类别 varchar(MAX),
+@Basis基准 varchar(MAX),
+@Contract合同 varchar(MAX),
+@Date发生时间 date,
+@HC编制 float
+
+AS
+BEGIN
+
+IF(@HCID岗位编号=0)
+	BEGIN
+	INSERT INTO HCMeta
+	(
+	Department部门,
+	Shift班次,
+	Area区域,
+	Team班组,
+	Position职位,
+	Category类别,
+	Basis基准,
+	Contract合同,
+	Date发生时间,
+	HC编制
+	)
+	VALUES
+	(
+	@Department部门,
+	@Shift班次,
+	@Area区域,
+	@Team班组,
+	@Position职位,
+	@Category类别,
+	@Basis基准,
+	@Contract合同,
+	@Date发生时间,
+	@HC编制
+	)
+	END
+ELSE
+	BEGIN UPDATE HCMeta
+	SET
+	Department部门=@Department部门,
+	Shift班次=@Shift班次,
+	Area区域=@Area区域,
+	Team班组=@Team班组,
+	Position职位=@Position职位,
+	Category类别=@Category类别,
+	Basis基准=@Basis基准,
+	Contract合同=@Contract合同,
+	Date发生时间=@Date发生时间,
+	HC编制=@HC编制
+	WHERE HCID岗位编号= @HCID岗位编号
+	END
+END
