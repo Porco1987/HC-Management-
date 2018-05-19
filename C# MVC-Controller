@@ -1,0 +1,60 @@
+using Dapper;
+using DapperHC.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace DapperHC.Controllers
+{
+    public class HCController : Controller
+    {
+        // GET: HC
+        public ActionResult Index()
+        {
+            return View(DapperORM.ReturnList<HCModel>("HCViewAll"));
+        }
+        //        ../HC/AddOrEdit   -insert
+        //        ../HC/AddOrEdit/id    
+        [HttpGet]
+        public ActionResult AddOrEdit(int id=0)
+        {
+            if (id == 0)
+                return View();
+            else
+            {
+                DynamicParameters param = new DynamicParameters();
+                param.Add("@HCID岗位编号", id);
+                return View(DapperORM.ReturnList<HCModel>("HCViewByID", param).FirstOrDefault<HCModel>());
+            }
+        }
+        [HttpPost]
+        public ActionResult AddOrEdit(HCModel emp)
+        {
+            DynamicParameters param = new DynamicParameters();
+            param.Add("@Department部门",emp.Depatment部门);
+            param.Add("@Shift班次", emp.Shift班次);
+            param.Add("@Area区域", emp.Area区域);
+            param.Add("@Team班组", emp.Team班组);
+            param.Add("@Position职位", emp.Position职位);
+            param.Add("@Category类别", emp.Category类别);
+            param.Add("@Basis基准", emp.Basis基准);
+            param.Add("@Contract合同", emp.Contract合同);
+            param.Add("@Date发生时间", emp.Date发生时间);
+            param.Add("@HC编制", emp.HC编制);
+            param.Add("@HCID岗位编号", emp.HCID岗位编号);
+            DapperORM.ExecuteWithoutReturn("HCAddorEdit", param);
+            
+            return RedirectToAction("Index");
+
+        }
+        public ActionResult Delete(int id)
+        {
+            DynamicParameters param = new DynamicParameters();
+            param.Add("@HCID岗位编号", id);
+            DapperORM.ExecuteWithoutReturn("HCDeleteByID", param);
+            return RedirectToAction("Index");
+        }
+    }
+}
