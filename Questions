@@ -1,0 +1,9 @@
+1. Models: Define calss and properties;
+2. Controllers: Define the action (call which View) after receiving request;
+3. View: Define the contents that show up;
+
+Q1: The class in Models was called in View without specofying the name, what if there are several classes in Models?
+    在View中call出Models中的类，只需在开头“@ProjectName.Models.ClassName"，若Models中有多个类，怎么防止混淆？
+    
+Q2: Pay attention to the RouteConfig strcture, such as:  url: "{controller}/{action}/{id}".
+    注意RouteConfig的结构，如：url: "{controller}/{action}/{id}"。
